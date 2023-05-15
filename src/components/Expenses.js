@@ -1,11 +1,25 @@
 import "../Expenses.css";
 import ExpenseItem from "./ExpenseItem";
+import ExpensesFilter from "./ExpensesFilter";
+import {useState} from 'react';
 function Expenses(props) {
+    let display = '';
+    const [filter,setFilter] = useState(0);
+
+    if(filter > 0){
+        display = props.expenses.map(expense => {
+            if(expense.date.getFullYear() == filter){
+                return <ExpenseItem key={Math.random} expenseDescription={expense.description} expensePrice={expense.price} expenseDate={expense.date} />
+            }
+        })
+    }
+    const handleFilter = (year) => {
+        setFilter(year);
+    }
     return(
         <div className="expenses">
-            <ExpenseItem expenseDescription={props.expenses[0].description} expensePrice={props.expenses[0].price} expenseDate={props.expenses[0].date} />
-            <ExpenseItem expenseDescription={props.expenses[1].description} expensePrice={props.expenses[1].price} expenseDate={props.expenses[1].date} />
-            <ExpenseItem expenseDescription={props.expenses[2].description} expensePrice={props.expenses[2].price} expenseDate={props.expenses[2].date} />
+            <ExpensesFilter filter={handleFilter}/>
+            {display}
         </div>
     )
 }
