@@ -28,34 +28,36 @@ const ExpenseForm = (props) => {
         // calling the parent function that handles the addition of new expenses
         props.handleAddingExpenses(NewExpense);
     }
-    const handleShowForm = () => {
+    const handleShowForm = (e) => {
+        e.preventDefault();
         setIsFormSHowing(prevState => {
             return !prevState;
         })
     }
   return (
-    
-     <form>
-      <div className="new-expense__controls">
-        <div className="new-expense__control">
-          <label>Title</label>
-          <input onChange={handleTitle} type="text" />
+    <>
+    { isFormShowing &&  <form>
+        <div className="new-expense__controls">
+          <div className="new-expense__control">
+            <label>Title</label>
+            <input onChange={handleTitle} type="text" />
+          </div>
+          <div className="new-expense__control">
+            <label>Price</label>
+            <input onChange={handlePrice} type="number" min="0" />
+          </div>
+          <div className="new-expense__control">
+            <label>Date</label>
+            <input onChange={handleDate} type="date" min="2019-01-01" />
+          </div>
+          <div className="new-expenses__actions">
+            <button onClick={handleFormSubmit} type="submit">ADD EXPENSE</button>
+          </div>
+          <a href="#" onClick={handleShowForm}>close</a>
         </div>
-        <div className="new-expense__control">
-          <label>Price</label>
-          <input onChange={handlePrice} type="number" min="0" />
-        </div>
-        <div className="new-expense__control">
-          <label>Date</label>
-          <input onChange={handleDate} type="date" min="2019-01-01" />
-        </div>
-        <div className="new-expenses__actions">
-          <button onClick={handleFormSubmit} type="submit">ADD EXPENSE</button>
-        </div>
-      </div>
-    </form> ? isFormShowing===true : <div className="new-expenses__actions">
-          <button onClick={handleShowForm} type="submit">ADD Expense</button>
-        </div>
+      </form>
+     }{isFormShowing===false && <div className="new-expenses__actions"><button onClick={handleShowForm}>ADD EXPENSES</button></div>}
+      </>
   );
 };
 
