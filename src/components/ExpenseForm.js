@@ -5,6 +5,7 @@ const ExpenseForm = (props) => {
     const [title,setTitle] = useState('');
     const [price,setPrice] = useState('');
     const [date, setDate] = useState('');
+    const [isFormShowing, setIsFormSHowing] = useState(false);
 
     const handleTitle = (e) => {
         setTitle(e.target.value);
@@ -27,8 +28,14 @@ const ExpenseForm = (props) => {
         // calling the parent function that handles the addition of new expenses
         props.handleAddingExpenses(NewExpense);
     }
+    const handleShowForm = () => {
+        setIsFormSHowing(prevState => {
+            return !prevState;
+        })
+    }
   return (
-    <form>
+    
+     <form>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
@@ -46,7 +53,9 @@ const ExpenseForm = (props) => {
           <button onClick={handleFormSubmit} type="submit">ADD EXPENSE</button>
         </div>
       </div>
-    </form>
+    </form> ? isFormShowing===true : <div className="new-expenses__actions">
+          <button onClick={handleShowForm} type="submit">ADD Expense</button>
+        </div>
   );
 };
 

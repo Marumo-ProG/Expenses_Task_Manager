@@ -5,16 +5,19 @@ import {useState} from "react";
 
 const EXPENSES = [
   {
+    key: Math.random,
     description: "Car Insurance",
     price: 320.00,
     date: new Date("2021-03-01")
   },
   {
+    key: Math.random,
     description: "Apartment Rent",
     price: 3000.50,
     date: new Date("2022-04-28")
   },
   {
+    key: Math.random,
     description: "iphone insallment",
     price: 900,
     date: new Date("2021-03-26")

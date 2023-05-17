@@ -3,7 +3,6 @@ import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
 import {useState} from 'react';
 function Expenses(props) {
-    let newExpenses = '';
     const [filter,setFilter] = useState(0);
     const handleFilter = (year) => {
         setFilter(year);
