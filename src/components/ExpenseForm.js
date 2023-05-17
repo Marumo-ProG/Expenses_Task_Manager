@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     const [title,setTitle] = useState('');
     const [price,setPrice] = useState('');
     const [date, setDate] = useState('');
@@ -18,11 +18,14 @@ const ExpenseForm = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         let NewExpense = {
-            title: title,
+            id: Math.random(),
+            description: title,
             price: price,
-            date: date
+            date: new Date(date)
         }
-        console.log(NewExpense);
+
+        // calling the parent function that handles the addition of new expenses
+        props.handleAddingExpenses(NewExpense);
     }
   return (
     <form>
