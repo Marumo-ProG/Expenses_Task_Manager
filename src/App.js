@@ -7,7 +7,7 @@ const EXPENSES = [
   {
     description: "Car Insurance",
     price: 320.00,
-    date: new Date("2023-03-01")
+    date: new Date("2021-03-01")
   },
   {
     description: "Apartment Rent",
@@ -24,7 +24,6 @@ const EXPENSES = [
 function App() {
   console.log(EXPENSES);
   const [expenses, setExpenses] = useState(EXPENSES);
-
   const handleAddingExpenses = (newExpense) => {
     // adding a new expense function
     setExpenses(prevExpenses => {
@@ -35,7 +34,7 @@ function App() {
     <div>
       <h2>Let's get started!</h2>
       <NewExpense handleAddingExpenses={handleAddingExpenses} />
-      <Expenses  expenses={expenses} />
+      <Expenses  expenses={expenses}  />
     </div>
   );
 }
